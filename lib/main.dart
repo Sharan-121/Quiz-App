@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './question.dart';
 
 // Flutter apps are just a tree of Widgets.They are the building blocks of any Flutter application.
 // Widget is a special type of object.
@@ -47,8 +48,8 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: <Widget>[
-            Text(
-                questionSet[_questionIndex]), // or questionSet.elementAt(index).
+            Question(questionSet[
+                _questionIndex]), // or questionSet.elementAt(index).
             ElevatedButton(
               onPressed:
                   answerQuestion, // Not answerQuestion() coz we need a pointer to the function(name instead of result).
