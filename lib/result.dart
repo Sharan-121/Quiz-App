@@ -9,10 +9,12 @@ class Result extends StatelessWidget {
   String get resultPhrase {
     String resultText;
 
-    if (_result > 20) {
-      resultText = "You are awesome";
+    if (_result < 15) {
+      resultText = "You are a Innocent Person";
+    } else if (_result < 25) {
+      resultText = "You are a Matured Person";
     } else {
-      resultText = "You are unique";
+      resultText = "You are a Bold Person";
     }
     return resultText;
   }
