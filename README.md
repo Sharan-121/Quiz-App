@@ -1,16 +1,11 @@
-# quiz_app
+## Quiz Application
 
-A new Flutter project.
+A basic Quiz Application developed to understand the fundamentals of Flutter and Dart.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Three multiple-choice questions with 4 options each. (More questions could be added and number of options could also be changed dynamically).
+- Each answer is rewarded with a score.
+- The personality of a person would be calculated by analysing the cumulative score finally.
+- The whole app is separated into 5 modules namely
+  main.dart, question.dart, answer.dart, quiz.dart and result.dart.
