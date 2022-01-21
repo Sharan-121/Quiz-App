@@ -26,8 +26,6 @@ class MyApp extends StatefulWidget {
 
 // Private Class
 class _MyAppState extends State<MyApp> {
-  var _questionIndex = 0; // To dynamically change questions.
-
   // const - compile time constant.
   // final - run time constant.
   static const questionSet = [
@@ -60,8 +58,17 @@ class _MyAppState extends State<MyApp> {
     },
   ];
   var _totalScore = 0;
-  void answerQuestion() {
-    // _totalScore += int.parse(score);
+  var _questionIndex = 0;
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
+  void answerQuestion(int score) {
+    _totalScore += score;
     setState(() {
       _questionIndex += 1;
     });
@@ -77,12 +84,17 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('My first App'),
+          title: Text('Personality Quiz'),
+          backgroundColor: Colors.amber[800],
         ),
-        body: _questionIndex < questionSet.length
-            ? Quiz(questionSet, answerQuestion, _questionIndex)
-            : Result(_totalScore),
+        body: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: _questionIndex < questionSet.length
+              ? Quiz(questionSet, answerQuestion, _questionIndex)
+              : Result(_totalScore, _resetQuiz),
+        ),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
