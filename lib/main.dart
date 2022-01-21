@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import './quiz.dart';
 import './question.dart';
 import './answer.dart';
+import './result.dart';
 
 // Flutter apps are just a tree of Widgets.They are the building blocks of any Flutter application.
 // Widget is a special type of object.
@@ -13,7 +15,7 @@ void main() {
 
 // This widget could be rebuilt whereas the state could be persistent.
 // State is a generic type.
-// setState forces to re-run build method
+// setState forces to re-run build method.
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -25,21 +27,41 @@ class MyApp extends StatefulWidget {
 // Private Class
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0; // To dynamically change questions.
-  var questionSet = [
+
+  // const - compile time constant.
+  // final - run time constant.
+  static const questionSet = [
     {
       'questionText': "What's your favorite color?",
-      'answers': ["Black", "Blue", "Red", "Orange"],
+      'answers': [
+        {"text": "Black", "score": 7},
+        {"text": "Blue", "score": 5},
+        {"text": "Orange", "score": 10},
+        {"text": "Red", "score": 2},
+      ],
     },
     {
       'questionText': "What's your favorite animal?",
-      'answers': ["Zebra", "Lion", "Fox", "Dog"],
+      'answers': [
+        {"text": "Tiger", "score": 7},
+        {"text": "Lion", "score": 8},
+        {"text": "Fox", "score": 10},
+        {"text": "Panda", "score": 5},
+      ],
     },
     {
       'questionText': "What's your favorite food?",
-      'answers': ["Dosa", "Idli", "Vada", "Pongal"],
+      'answers': [
+        {"text": "Idli", "score": 1},
+        {"text": "Vada", "score": 7},
+        {"text": "Dosa", "score": 10},
+        {"text": "Pongal", "score": 2},
+      ],
     },
   ];
-  void _answerQuestion() {
+  var _totalScore = 0;
+  void answerQuestion() {
+    // _totalScore += int.parse(score);
     setState(() {
       _questionIndex += 1;
     });
@@ -57,17 +79,9 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('My first App'),
         ),
-        body: Column(
-          children: <Widget>[
-            Question(
-              questionSet[_questionIndex]['questionText'] as String,
-            ), // or questionSet.elementAt(index).
-            ...(questionSet[_questionIndex]['answers'] as List<String>)
-                .map((answer) {
-              return Answer(_answerQuestion, answer);
-            }).toList()
-          ],
-        ),
+        body: _questionIndex < questionSet.length
+            ? Quiz(questionSet, answerQuestion, _questionIndex)
+            : Result(_totalScore),
       ),
     );
   }
