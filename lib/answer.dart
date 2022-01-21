@@ -1,7 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
-  final VoidCallback selectHandler;
+  final void Function()? selectHandler;
   final String answerText;
 
   Answer(this.selectHandler, this.answerText);
@@ -12,7 +14,7 @@ class Answer extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.green),
+          backgroundColor: MaterialStateProperty.all(Colors.amber[800]),
           foregroundColor: MaterialStateProperty.all(Colors.white),
         ),
         onPressed: selectHandler,
