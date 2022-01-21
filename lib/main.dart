@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './question.dart';
+import './answer.dart';
 
 // Flutter apps are just a tree of Widgets.They are the building blocks of any Flutter application.
 // Widget is a special type of object.
@@ -25,10 +26,20 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0; // To dynamically change questions.
   var questionSet = [
-    "What's your favorite color?",
-    "What's your favorite animal?",
+    {
+      'questionText': "What's your favorite color?",
+      'answers': ["Black", "Blue", "Red", "Orange"],
+    },
+    {
+      'questionText': "What's your favorite animal?",
+      'answers': ["Zebra", "Lion", "Fox", "Dog"],
+    },
+    {
+      'questionText': "What's your favorite food?",
+      'answers': ["Dosa", "Idli", "Vada", "Pongal"],
+    },
   ];
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
       _questionIndex += 1;
     });
@@ -48,27 +59,13 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: <Widget>[
-            Question(questionSet[
-                _questionIndex]), // or questionSet.elementAt(index).
-            ElevatedButton(
-              onPressed:
-                  answerQuestion, // Not answerQuestion() coz we need a pointer to the function(name instead of result).
-              child: Text("Answer 1"),
-            ),
-            ElevatedButton(
-              onPressed: answerQuestion,
-              child: Text("Answer 2"),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                print("Answer chosen!");
-              }, //Anonymous Function.
-              child: Text("Answer 3"),
-            ),
-            ElevatedButton(
-              onPressed: answerQuestion,
-              child: Text("Answer 4"),
-            ),
+            Question(
+              questionSet[_questionIndex]['questionText'] as String,
+            ), // or questionSet.elementAt(index).
+            ...(questionSet[_questionIndex]['answers'] as List<String>)
+                .map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList()
           ],
         ),
       ),
