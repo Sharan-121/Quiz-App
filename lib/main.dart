@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import './quiz.dart';
-import './question.dart';
-import './answer.dart';
 import './result.dart';
 
 void main() {
