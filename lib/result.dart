@@ -10,7 +10,7 @@ class Result extends StatelessWidget {
     String resultText;
 
     if (_result < 15) {
-      resultText = "You are a Innocent Person";
+      resultText = "You are an Innocent Person";
     } else if (_result < 25) {
       resultText = "You are a Matured Person";
     } else {
@@ -29,7 +29,7 @@ class Result extends StatelessWidget {
             resultPhrase,
             style: TextStyle(
                 color: Colors.deepOrange,
-                fontSize: 30,
+                fontSize: 25,
                 fontWeight: FontWeight.bold),
           ),
           ElevatedButton(
